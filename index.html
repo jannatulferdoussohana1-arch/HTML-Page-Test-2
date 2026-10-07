@@ -1,0 +1,1080 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Nova — Build Better Products</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #070708;
+      --surface: #0d0d10;
+      --surface-2: #131316;
+      --border: rgba(255, 255, 255, 0.09);
+      --text: #f5f5f7;
+      --muted: #94949d;
+      --accent: #8b5cf6;
+      --accent-2: #6366f1;
+    }
+
+    body {
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 6%;
+      background: rgba(7, 7, 8, 0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .logo-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+
+      display: grid;
+      place-items: center;
+
+      background: linear-gradient(
+        135deg,
+        var(--accent),
+        var(--accent-2)
+      );
+
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+    }
+
+    .logo-mark::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      background: white;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+
+      color: #aaaab2;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 40px;
+      padding: 0 17px;
+
+      border-radius: 9px;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      color: #cfcfd5;
+      background: transparent;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .btn-primary {
+      color: white;
+      background: white;
+      color: #08080a;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.12);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 150px 24px 100px;
+
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+
+      width: 700px;
+      height: 700px;
+
+      top: -280px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      background: radial-gradient(
+        circle,
+        rgba(124, 58, 237, 0.25),
+        rgba(124, 58, 237, 0) 68%
+      );
+
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,0.035) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,0.035) 1px,
+          transparent 1px
+        );
+
+      background-size: 60px 60px;
+
+      mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 75%
+      );
+
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+
+      max-width: 900px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 7px 12px;
+
+      border: 1px solid var(--border);
+      border-radius: 999px;
+
+      background: rgba(255,255,255,0.035);
+
+      color: #bdbdc5;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+
+      background: #a78bfa;
+      box-shadow: 0 0 12px #8b5cf6;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 7vw, 86px);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+      font-weight: 750;
+
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .gradient-text {
+      background: linear-gradient(
+        90deg,
+        #ffffff,
+        #a78bfa,
+        #818cf8
+      );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 650px;
+      margin: 28px auto 0;
+
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+
+      margin-top: 34px;
+    }
+
+    .hero-buttons .btn {
+      min-height: 48px;
+      padding: 0 23px;
+      border-radius: 11px;
+    }
+
+    .btn-purple {
+      color: white;
+      background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #6366f1
+      );
+
+      box-shadow:
+        0 10px 40px rgba(99, 102, 241, 0.25);
+    }
+
+    .btn-purple:hover {
+      box-shadow:
+        0 14px 50px rgba(99, 102, 241, 0.38);
+    }
+
+    /* =========================
+       PRODUCT PREVIEW
+    ========================= */
+
+    .preview-wrapper {
+      position: relative;
+      z-index: 2;
+
+      max-width: 1100px;
+      margin: 75px auto 0;
+
+      padding: 1px;
+
+      border-radius: 18px;
+
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0.04)
+      );
+
+      box-shadow:
+        0 40px 100px rgba(0,0,0,0.5),
+        0 0 100px rgba(99,102,241,0.12);
+    }
+
+    .preview {
+      overflow: hidden;
+      border-radius: 17px;
+      background: #101012;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .preview-top {
+      height: 48px;
+
+      display: flex;
+      align-items: center;
+
+      padding: 0 17px;
+
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      background: #0d0d0f;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .window-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #45454a;
+    }
+
+    .preview-body {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+
+      min-height: 440px;
+    }
+
+    .preview-sidebar {
+      padding: 20px 14px;
+
+      border-right: 1px solid rgba(255,255,255,0.06);
+      background: #0b0b0d;
+    }
+
+    .side-title {
+      height: 9px;
+      width: 75px;
+      border-radius: 5px;
+      background: #333338;
+      margin: 6px 8px 25px;
+    }
+
+    .side-item {
+      height: 34px;
+      border-radius: 7px;
+      margin-bottom: 5px;
+
+      display: flex;
+      align-items: center;
+
+      padding: 0 10px;
+
+      color: #77777f;
+      font-size: 11px;
+    }
+
+    .side-item.active {
+      color: #e5e5e8;
+      background: rgba(255,255,255,0.07);
+    }
+
+    .preview-main {
+      padding: 25px;
+      background: #111113;
+    }
+
+    .preview-heading {
+      width: 190px;
+      height: 17px;
+
+      border-radius: 5px;
+      background: #e3e3e6;
+
+      margin-bottom: 8px;
+    }
+
+    .preview-subheading {
+      width: 260px;
+      height: 9px;
+
+      border-radius: 5px;
+      background: #3b3b40;
+
+      margin-bottom: 28px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 14px;
+    }
+
+    .dashboard-card {
+      min-height: 150px;
+
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 11px;
+
+      background: #171719;
+      padding: 17px;
+    }
+
+    .dashboard-card.large {
+      grid-row: span 2;
+    }
+
+    .card-line {
+      height: 7px;
+      width: 80px;
+
+      border-radius: 5px;
+      background: #45454a;
+
+      margin-bottom: 18px;
+    }
+
+    .chart {
+      height: 85px;
+
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .bar {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+
+      background: linear-gradient(
+        to top,
+        #5b21b6,
+        #8b5cf6
+      );
+
+      opacity: 0.85;
+    }
+
+    .bar:nth-child(1) { height: 40%; }
+    .bar:nth-child(2) { height: 62%; }
+    .bar:nth-child(3) { height: 48%; }
+    .bar:nth-child(4) { height: 82%; }
+    .bar:nth-child(5) { height: 68%; }
+    .bar:nth-child(6) { height: 95%; }
+    .bar:nth-child(7) { height: 72%; }
+
+    /* =========================
+       TRUST
+    ========================= */
+
+    .trusted {
+      padding: 80px 24px;
+
+      text-align: center;
+
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .trusted p {
+      color: #66666e;
+      font-size: 13px;
+      margin-bottom: 28px;
+    }
+
+    .logos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 55px;
+
+      color: #505057;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* =========================
+       FEATURES
+    ========================= */
+
+    .section {
+      max-width: 1150px;
+      margin: auto;
+      padding: 130px 24px;
+    }
+
+    .section-heading {
+      max-width: 650px;
+      margin-bottom: 60px;
+    }
+
+    .section-label {
+      color: #8b5cf6;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 13px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(35px, 5vw, 55px);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: 18px;
+      font-size: 17px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .feature {
+      padding: 27px;
+
+      min-height: 240px;
+
+      border: 1px solid var(--border);
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.045),
+          rgba(255,255,255,0.015)
+        );
+
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      border-color: rgba(139,92,246,0.3);
+    }
+
+    .feature-icon {
+      width: 42px;
+      height: 42px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 10px;
+
+      background: rgba(139,92,246,0.12);
+      color: #a78bfa;
+
+      margin-bottom: 30px;
+      font-size: 18px;
+    }
+
+    .feature h3 {
+      font-size: 18px;
+      margin-bottom: 9px;
+    }
+
+    .feature p {
+      color: #85858d;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta {
+      max-width: 1100px;
+      margin: 0 auto 120px;
+
+      padding: 90px 30px;
+
+      text-align: center;
+
+      border: 1px solid var(--border);
+      border-radius: 22px;
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(124,58,237,0.2),
+          transparent 55%
+        ),
+        #0d0d10;
+    }
+
+    .cta h2 {
+      max-width: 650px;
+      margin: auto;
+
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+    }
+
+    .cta p {
+      color: #888890;
+      margin: 20px auto 30px;
+      max-width: 530px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+
+      padding: 35px 6%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      color: #66666e;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+      }
+
+      .navbar {
+        padding: 0 20px;
+      }
+
+      .hero {
+        padding-top: 125px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        max-width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .preview-body {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-sidebar {
+        display: none;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-card.large {
+        grid-row: auto;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .logos {
+        gap: 25px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-actions .btn-ghost {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .preview-main {
+        padding: 15px;
+      }
+
+      .preview-wrapper {
+        margin-top: 50px;
+      }
+
+      .section {
+        padding: 90px 20px;
+      }
+
+      .cta {
+        margin: 0 15px 80px;
+        padding: 65px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="#" class="logo">
+      <span class="logo-mark"></span>
+      Nova
+    </a>
+
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#product">Product</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#docs">Docs</a>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn btn-ghost">Sign in</button>
+      <button class="btn btn-primary">Get started</button>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-grid"></div>
+
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          The modern workspace for ambitious teams
+        </div>
+
+        <h1>
+          Build faster.
+          <span class="gradient-text">Ship smarter.</span>
+        </h1>
+
+        <p class="hero-description">
+          Nova brings your projects, data, workflows, and team
+          together in one powerful workspace designed for modern
+          product teams.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#" class="btn btn-purple">
+            Start building free →
+          </a>
+
+          <a href="#product" class="btn btn-ghost">
+            Explore product
+          </a>
+        </div>
+
+        <!-- PRODUCT PREVIEW -->
+        <div class="preview-wrapper" id="product">
+
+          <div class="preview">
+
+            <div class="preview-top">
+              <div class="window-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <div class="preview-body">
+
+              <aside class="preview-sidebar">
+
+                <div class="side-title"></div>
+
+                <div class="side-item active">
+                  Overview
+                </div>
+
+                <div class="side-item">
+                  Projects
+                </div>
+
+                <div class="side-item">
+                  Analytics
+                </div>
+
+                <div class="side-item">
+                  Team
+                </div>
+
+                <div class="side-item">
+                  Settings
+                </div>
+
+              </aside>
+
+              <div class="preview-main">
+
+                <div class="preview-heading"></div>
+                <div class="preview-subheading"></div>
+
+                <div class="dashboard-grid">
+
+                  <div class="dashboard-card large">
+
+                    <div class="card-line"></div>
+
+                    <div class="chart">
+                      <div class="bar"></div>
+                      <div class="bar"></div>
+                      <div class="bar"></div>
+                      <div class="bar"></div>
+                      <div class="bar"></div>
+                      <div class="bar"></div>
+                      <div class="bar"></div>
+                    </div>
+
+                  </div>
+
+                  <div class="dashboard-card">
+                    <div class="card-line"></div>
+                    <div style="
+                      width:70%;
+                      height:24px;
+                      background:#29292e;
+                      border-radius:6px;
+                    "></div>
+                  </div>
+
+                  <div class="dashboard-card">
+                    <div class="card-line"></div>
+                    <div style="
+                      width:45%;
+                      height:24px;
+                      background:#29292e;
+                      border-radius:6px;
+                    "></div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- TRUSTED BY -->
+    <section class="trusted">
+
+      <p>TRUSTED BY MODERN TEAMS</p>
+
+      <div class="logos">
+        <span>ACME</span>
+        <span>VERCEL</span>
+        <span>LINEAR</span>
+        <span>STRIPE</span>
+        <span>NOTION</span>
+      </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+    <section class="section" id="features">
+
+      <div class="section-heading">
+
+        <div class="section-label">
+          Everything you need
+        </div>
+
+        <h2>
+          One workspace.
+          Infinite possibilities.
+        </h2>
+
+        <p>
+          Replace scattered tools with one focused workspace
+          built to help your team move from idea to execution.
+        </p>
+
+      </div>
+
+      <div class="features">
+
+        <article class="feature">
+
+          <div class="feature-icon">✦</div>
+
+          <h3>Powerful workflows</h3>
+
+          <p>
+            Design flexible workflows that adapt to the way
+            your team actually works.
+          </p>
+
+        </article>
+
+
+        <article class="feature">
+
+          <div class="feature-icon">◈</div>
+
+          <h3>Real-time analytics</h3>
+
+          <p>
+            Turn your data into clear insights with beautiful
+            dashboards and actionable metrics.
+          </p>
+
+        </article>
+
+
+        <article class="feature">
+
+          <div class="feature-icon">⌁</div>
+
+          <h3>Built for teams</h3>
+
+          <p>
+            Collaborate seamlessly with your team while keeping
+            everything organized in one place.
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- CTA -->
+    <section class="cta" id="pricing">
+
+      <h2>
+        Ready to build something great?
+      </h2>
+
+      <p>
+        Start free today. No credit card required.
+        Upgrade whenever your team is ready.
+      </p>
+
+      <a href="#" class="btn btn-purple">
+        Get started for free →
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer id="docs">
+
+    <div>
+      © 2026 Nova. All rights reserved.
+    </div>
+
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Docs</a>
+      <a href="#">Contact</a>
+    </div>
+
+  </footer>
+
+</body>
+</html>
